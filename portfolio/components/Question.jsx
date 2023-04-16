@@ -2,9 +2,9 @@ import { Text, View, Button } from 'react-native';
 import { useState } from 'react'
 import { ButtonGroup } from 'react-native-elements/'
 
-export default function Question({ navigation }){
+export default function Question({ navigation, route }){
 
-
+  const { firstName, lastName, email } = route.params;
     const data = [
     {
     prompt: "This is the question...",
@@ -77,14 +77,14 @@ export default function Question({ navigation }){
         tempAnswers.push(buttonGroupSelectedIndexes);
         setSelectedAnswers(tempAnswers);
 
-        navigation.navigate('Summary', { selectedAnswers, data })
+        navigation.navigate('Summary', { selectedAnswers, data, email })
         setButtonGroupSelectedIndexes([])
       }
   }
 
     return(
         <View>
-        <Text>Question Page</Text>
+        <Text>{firstName} {lastName}'s Quiz</Text>
         <Text style={{ fontSize: 18, fontWeight: "bold" }}>
           {currentQuestion?.prompt}
         </Text>

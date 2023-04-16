@@ -1,4 +1,5 @@
-import { Text, View } from 'react-native';
+import { Text, View, Button } from 'react-native';
+import { useState } from 'react';
 
     function isArraysEqual(Array1, Array2) {
         if (Array1.length !== Array2.length) {
@@ -51,8 +52,16 @@ import { Text, View } from 'react-native';
         return "No";
     }
 
-export default function Summary({ route }){
-    const { selectedAnswers, data } = route.params;
+export default function Summary({ navigation, route }){
+    const [confirm, setConfirm] = useState('')
+
+    function confirmation() {
+        setConfirm(`sent to ${email}`)
+    }
+    const { selectedAnswers, data, email } = route.params;
+    function toSurvey() {
+        navigation.navigate('Survey')
+    }
     return(
         <View style={{alignItems: 'center'}}>
         <Text testID="total" style={{paddingVertical: 10}} >Total Points: {totalPoints(data, selectedAnswers)}</Text>
@@ -64,6 +73,12 @@ export default function Summary({ route }){
                     <Text>Were you correct?  ::  {YesNo(isArraysEqual(question.correct, selectedAnswers[index]))}</Text>
                 </View>
             ))}
+            <View style={{flexDirection: 'row'}}>
+            <Text style={{paddingTop: 10, fontWeight: 'bold'}}>Send results to {email}?</Text>
+            <Button title="Yes Please!" onPress={confirmation}></Button>
+            </View>
+            <Text>{confirm}</Text>
+            <Button title="take our survey" onPress={toSurvey}></Button>
         </View>
     )
 }

@@ -1,18 +1,23 @@
 import Question from "./components/Question"
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import Summary from "./components/Summary";
+import Home from "./components/Home";
+import Survey from "./components/Survey";
+import FinalPage from "./components/FinalPage";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Question">
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={Home} options={{ title: 'Home Page' }} />
         <Stack.Screen name="Question" component={Question} options={{ title: 'Question Page' }} />
         <Stack.Screen name="Summary" component={Summary} options={{ title: 'Summary Page' }} />
+        <Stack.Screen name="Survey" component={Survey} options={{ title: 'Survey Page' }} />
+        <Stack.Screen name="FinalPage" component={FinalPage} options={{ title: 'Final Page' }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
