@@ -3,10 +3,12 @@ import { useState } from 'react'
 
 export default function Survey({ navigation }){
 
+    const [value, setValue] = useState('')
+
     function toFinalPage() {
         navigation.navigate("FinalPage", { value })
     }
-    const [value, setValue] = useState('')
+    
     return (
         <View style={{alignItems: 'center'}}>
             <Text>How was your experience?</Text>
