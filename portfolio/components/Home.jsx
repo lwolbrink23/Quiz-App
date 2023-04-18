@@ -41,7 +41,7 @@ export default function Home({ navigation }){
             onChangeText={setLastName}
             />
             <Input
-            placeholder="Email Name"
+            placeholder="Email"
             value={email}
             onChangeText={setEmail}
             onBlur={validateEmail}
