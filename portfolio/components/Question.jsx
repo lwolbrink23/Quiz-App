@@ -84,11 +84,12 @@ export default function Question({ navigation, route }){
 
     return(
         <View>
+        <View style={{alignItems: 'center'}}>
         <Text>{firstName} {lastName}'s Quiz</Text>
         <Text style={{ fontSize: 18, fontWeight: "bold" }}>
           {currentQuestion?.prompt}
         </Text>
-
+        </View>
         <View style={{flex: 1, justifyContent: 'center'}}>
 
           <ButtonGroup

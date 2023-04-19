@@ -4,9 +4,14 @@ import { useState } from 'react'
 export default function Survey({ navigation }){
 
     const [value, setValue] = useState('')
+    const [submitted, setSubmitted] = useState(false)
 
-    function toFinalPage() {
-        navigation.navigate("FinalPage", { value })
+    function showResponse() {
+        setSubmitted(true)
+    }
+
+    function goHome() {
+        navigation.navigate("Home")
     }
     
     return (
@@ -21,7 +26,14 @@ export default function Survey({ navigation }){
             style={{padding: 10, backgroundColor:"#bebebe" }}
             placeholder='type here'
             />
-            <Button title="Submit" onPress={toFinalPage}></Button>
+            <Button title="Submit" onPress={showResponse}></Button>
+            {submitted && (
+                <View style={{alignItems: 'center'}}>
+                    <Text>Thank you for your submission.</Text>
+                    <Text>Your Response: {value}</Text>
+                    <Button title="Go to Home" onPress={goHome}></Button>
+                </View>
+            )}
       </View>
     )
 }

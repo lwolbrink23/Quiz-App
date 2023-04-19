@@ -5,7 +5,6 @@ import { StyleSheet, Text, View } from 'react-native';
 import Summary from "./components/Summary";
 import Home from "./components/Home";
 import Survey from "./components/Survey";
-import FinalPage from "./components/FinalPage";
 
 const Stack = createNativeStackNavigator();
 
@@ -17,7 +16,6 @@ export default function App() {
         <Stack.Screen name="Question" component={Question} options={{ title: 'Question Page' }} />
         <Stack.Screen name="Summary" component={Summary} options={{ title: 'Summary Page' }} />
         <Stack.Screen name="Survey" component={Survey} options={{ title: 'Survey Page' }} />
-        <Stack.Screen name="FinalPage" component={FinalPage} options={{ title: 'Final Page' }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
