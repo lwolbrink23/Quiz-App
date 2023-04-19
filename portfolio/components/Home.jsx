@@ -4,15 +4,17 @@ import { Input } from '@rneui/themed';
 
 export default function Home({ navigation }){
 
+    // useState variables
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
+    const [emailError, setEmailError] = useState("");
 
+    // navigation module used here to move to the Question component
     function handleSubmit() {
         navigation.navigate('Question', { firstName, lastName, email })
     }
-
-    const [emailError, setEmailError] = useState("");
+    
     // validating the email function
     let validateEmail = useCallback(() => {
         if (!/.+@.+\..{2,3}/.test(email)) {
@@ -22,6 +24,7 @@ export default function Home({ navigation }){
         }
     }, [email]);
 
+    // if this variable becomes true, the "Submit" button enables
     const isButtonEnabled =
     firstName.length > 0 &&
     lastName.length > 0 &&

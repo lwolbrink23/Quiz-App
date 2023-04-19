@@ -26,12 +26,12 @@ import { useState } from 'react';
     }
 
     function correctAnswer(question) {
-        // write a function that returns the correct answer for one question
+
         return question.correct.map((index) => question.choices[index]).join(", ");
     }
 
     function yourAnswer(question, selectedAnswers, index) {
-        // write a function that returns the user's chosen answer for one question
+
         const selected = selectedAnswers[index];
         if (question.type === "multiple-choice" || question.type === "true-false") {
             if (isArraysEqual(question.correct, selected))

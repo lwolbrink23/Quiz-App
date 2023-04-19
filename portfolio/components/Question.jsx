@@ -3,8 +3,9 @@ import { useState } from 'react'
 import { ButtonGroup } from 'react-native-elements/'
 
 export default function Question({ navigation, route }){
-
+  // accepts the three params from Home.jsx
   const { firstName, lastName, email } = route.params;
+  
     const data = [
     {
     prompt: "This is the question...",
@@ -38,28 +39,31 @@ export default function Question({ navigation, route }){
     correct: [1]
     }
     ]
-
+    // useState variables
     const [currentIndex, setIndex] = useState(0);
     const [buttonGroupSelectedIndexes, setButtonGroupSelectedIndexes] = useState([]);
     const [points, setPoints] = useState(0);
     const currentQuestion = data[currentIndex];
     const [selectedAnswers, setSelectedAnswers] = useState([]);
 
+    
     const handleAnswerClick = (index) => {
+      // Checks if the buttonGroupSelectedIndexes state already includes the selected index.
+      // If it does, then it removes the index using the filter function
       if (currentQuestion.type === "multiple-answer") {
         setButtonGroupSelectedIndexes(buttonGroupSelectedIndexes.includes(index) ? 
           buttonGroupSelectedIndexes.filter(item => item !== index) : 
           [...buttonGroupSelectedIndexes, index]);
       }
       else {
+        // sets buttonGroupSelectedIndexes to an array containing the selected index if it is not already included
         setButtonGroupSelectedIndexes(buttonGroupSelectedIndexes.includes(index) ? [] : [index]);
       }
     };
 
-
     const handleNextQuestion = () => {
       if (buttonGroupSelectedIndexes.length !== 0) {
-
+        // selected answers are added to the array
         let tempAnswers = selectedAnswers;
         tempAnswers.push(buttonGroupSelectedIndexes);
         setSelectedAnswers(tempAnswers);
@@ -69,14 +73,14 @@ export default function Question({ navigation, route }){
         setButtonGroupSelectedIndexes([]);
       }
     };
-
+    
     const handleSubmit = () => {
       if (buttonGroupSelectedIndexes.length !== 0) {
-
+        // when the user clicks submit, their selected answers are added to the array 'buttonGroupSelectedIndexes'
         let tempAnswers = selectedAnswers;
         tempAnswers.push(buttonGroupSelectedIndexes);
         setSelectedAnswers(tempAnswers);
-
+        // then the user is sent to the Summary component
         navigation.navigate('Summary', { selectedAnswers, data, email })
         setButtonGroupSelectedIndexes([])
       }
